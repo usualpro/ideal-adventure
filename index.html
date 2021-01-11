@@ -30,6 +30,8 @@
             axios.post('https://effy-simple-api.herokuapp.com/comments', {
                 "content": document.querySelector('#contenu-form').value,
                 "post_id": 752
+            }).then(function () {
+                document.querySelector('#contenu-form').value = '';
             });
         }
     </script>
