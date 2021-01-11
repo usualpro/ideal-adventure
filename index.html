@@ -28,13 +28,26 @@
             </div>
             <div class="col">
                 <h1 class="fw-bold">Liste des commentaires pour le poste 752</h1>
-                <ul class="list-group">
+                <ul class="list-group" id="liste-commentaires">
                     <li class="list-group-item">Commentaire 1</li>
+                    <li class="list-group-item">Commentaire 2</li>
+                    <li class="list-group-item">Commentaire 3</li>
                 </ul>
             </div>
         </div>
     </div>
     <script>
+
+        axios.get('https://effy-simple-api.herokuapp.com/posts/752').then(function (results) {
+            results.data.comments.map(function (commentaire, id) {
+                console.log(commentaire, id);
+                return commentaire;
+            })
+
+
+
+        });
+
         document.querySelector('.btn-soumission').onclick = function (btn) {
             btn.preventDefault();
             axios.post('https://effy-simple-api.herokuapp.com/comments', {
