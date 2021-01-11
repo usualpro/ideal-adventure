@@ -34,14 +34,18 @@
     </div>
     <script>
 
-        axios.get('https://effy-simple-api.herokuapp.com/posts/752').then(function (results) {
-            results.data.comments.map(function (commentaire, id) {
-                document.querySelector("#liste-commentaires").innerHTML+= `<li class="list-group-item">
+
+        function listCommentaires() {
+            document.querySelector("#liste-commentaires").innerHTML = '';
+            axios.get('https://effy-simple-api.herokuapp.com/posts/752').then(function (results) {
+                results.data.comments.map(function (commentaire, id) {
+                    document.querySelector("#liste-commentaires").innerHTML += `<li class="list-group-item">
                     ${commentaire.content}
                 </li>`;
-                return commentaire;
-            })
-        });
+                    return commentaire;
+                })
+            });
+        }
 
         document.querySelector('.btn-soumission').onclick = function (btn) {
             btn.preventDefault();
@@ -50,8 +54,11 @@
                 "post_id": 752
             }).then(function () {
                 document.querySelector('#contenu-form').value = '';
+                listCommentaires()
             });
         }
+
+        listCommentaires();
     </script>
 </body>
 
