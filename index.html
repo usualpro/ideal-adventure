@@ -34,11 +34,10 @@
         function listCommentaires() {
             document.querySelector("#liste-commentaires").innerHTML = '';
             axios.get('https://effy-simple-api.herokuapp.com/posts/752').then(function (results) {
-                results.data.comments.reverse().map(function (commentaire, id) {
+                results.data.comments.reverse().map(function (commentaire) {
                     document.querySelector("#liste-commentaires").innerHTML += `<li class="list-group-item">
                     ${commentaire.content}
                 </li>`;
-                    return commentaire;
                 })
             });
         }
