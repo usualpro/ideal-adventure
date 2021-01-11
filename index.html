@@ -19,10 +19,15 @@
                 <label for="contenu-form">Votre commentaire</label>
             </div>
             <div class="text-center">
-                <button class="btn btn-primary">Soumettre commentaire</button>
+                <button class="btn btn-primary btn-soumission">Soumettre commentaire</button>
             </div>
         </form>
     </div>
+    <script>
+        document.querySelector('.btn-soumission').onclick = function (btn) {
+            btn.preventDefault();
+        }
+    </script>
 </body>
 
 </html>
