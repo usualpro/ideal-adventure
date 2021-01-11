@@ -11,18 +11,28 @@
 </head>
 
 <body>
-    <div class="form-wrapper w-50 mx-auto my-3">
-        <h1 class="text-center fw-bold">Formulaire</h1>
-        <form>
-            <div class="form-floating mb-3">
-                <textarea class="form-control" id='contenu-form'
-                    placeholder="Indiquez votre commentaire ici"></textarea>
-                <label for="contenu-form">Votre commentaire</label>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="fw-bold">Formulaire d'ajout de commentaire pour le poste 752</h1>
+                <form>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control h-100" id='contenu-form'
+                            placeholder="Indiquez votre commentaire ici"></textarea>
+                        <label for="contenu-form">Votre commentaire</label>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-soumission">Soumettre commentaire</button>
+                    </div>
+                </form>
             </div>
-            <div class="text-center">
-                <button class="btn btn-primary btn-soumission">Soumettre commentaire</button>
+            <div class="col">
+                <h1 class="fw-bold">Liste des commentaires pour le poste 752</h1>
+                <ul class="list-group">
+                    <li class="list-group-item">Commentaire 1</li>
+                </ul>
             </div>
-        </form>
+        </div>
     </div>
     <script>
         document.querySelector('.btn-soumission').onclick = function (btn) {
