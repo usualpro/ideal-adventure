@@ -21,9 +21,7 @@
                             placeholder="Indiquez votre commentaire ici"></textarea>
                         <label for="contenu-form">Votre commentaire</label>
                     </div>
-                    <div class="text-center">
-                        <button class="btn btn-primary btn-soumission">Soumettre commentaire</button>
-                    </div>
+                    <button class="btn btn-primary btn-soumission">Soumettre commentaire</button>
                 </form>
             </div>
             <div class="col">
@@ -33,8 +31,6 @@
         </div>
     </div>
     <script>
-
-
         function listCommentaires() {
             document.querySelector("#liste-commentaires").innerHTML = '';
             axios.get('https://effy-simple-api.herokuapp.com/posts/752').then(function (results) {
@@ -54,10 +50,10 @@
                 "post_id": 752
             }).then(function () {
                 document.querySelector('#contenu-form').value = '';
-                listCommentaires()
+                listCommentaires();
             });
         }
-
+        setInterval(listCommentaires, 10000);
         listCommentaires();
     </script>
 </body>
