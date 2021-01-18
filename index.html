@@ -20,6 +20,7 @@
                         <textarea name="monChampDeTexte" class="form-control h-100" id='contenu-form'
                             placeholder="Indiquez votre commentaire ici"></textarea>
                         <label for="contenu-form">Votre commentaire</label>
+                        <p id="compteur"></p>
                     </div>
                     <button class="btn btn-primary btn-soumission" disabled>Soumettre commentaire</button>
                 </form>
@@ -31,6 +32,15 @@
         </div>
     </div>
     <script>
+
+
+        
+        
+
+        document.getElementById("contenu-form").onchange = function(champDeTexte){
+            document.getElementById('compteur').innerHTML = `${champDeTexte.currentTarget.value.length} / 30 charactères`;
+        }
+
         document.getElementById("leFormulaire").onchange = function onChange(form) {
             var formulaireData = new FormData(form.currentTarget);
             if (formulaireData.get('monChampDeTexte').length > 30) {
