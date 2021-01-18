@@ -19,6 +19,7 @@
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="email-form" placeholder="Votre adresse mail" />
                         <label for="email-form">Votre adresse mail</label>
+                        <div id="erreurEmail" class="my-2"></div>
                     </div>
                     <div class="form-floating mb-3">
                         <textarea name="monChampDeTexte" class="form-control h-100" id='contenu-form'
@@ -57,6 +58,10 @@
             var leChampEmailEstRemplie  = expressionReguliere.test(formulaireData.get('email-form'));
             if (leChampDeTexteEstRemplie && leChampEmailEstRemplie) {
                 document.querySelector('.btn-soumission').removeAttribute('disabled');
+            }else if(leChampEmailEstRemplie == false){
+                document.getElementById('erreurEmail').innerHTML = `l'email saisi est invalide 😅`;
+            }else if(leChampEmailEstRemplie){
+                document.getElementById('erreurEmail').innerHTML = ``;
             }
         }
 
@@ -75,6 +80,7 @@
                 })
             });
         }
+        
         /*
             Se déclenche lors d'un click sur le bouton de soumission
             permet d'ajouter un commentaire à la liste de commentaires du post avec l'id:752
