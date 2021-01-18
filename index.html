@@ -37,11 +37,11 @@
         
         
 
-        document.getElementById("contenu-form").onchange = function(champDeTexte){
+        document.getElementById("contenu-form").oninput = function(champDeTexte){
             document.getElementById('compteur').innerHTML = `${champDeTexte.currentTarget.value.length} / 30 charactères`;
         }
 
-        document.getElementById("leFormulaire").onchange = function onChange(form) {
+        document.getElementById("leFormulaire").oninput = function onChange(form) {
             var formulaireData = new FormData(form.currentTarget);
             if (formulaireData.get('monChampDeTexte').length > 30) {
                 document.querySelector('.btn-soumission').removeAttribute('disabled');
