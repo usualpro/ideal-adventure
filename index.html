@@ -17,6 +17,10 @@
                 <h1 class="fw-bold">Formulaire d'ajout de commentaire pour le poste 752</h1>
                 <form id="leFormulaire">
                     <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="email-form" placeholder="Votre adresse mail" />
+                        <label for="email-form">Votre adresse mail</label>
+                    </div>
+                    <div class="form-floating mb-3">
                         <textarea name="monChampDeTexte" class="form-control h-100" id='contenu-form'
                             placeholder="Indiquez votre commentaire ici"></textarea>
                         <label for="contenu-form">Votre commentaire</label>
@@ -48,7 +52,10 @@
         */
         function onFormChange(form) {
             var formulaireData = new FormData(form.currentTarget);
-            if (formulaireData.get('monChampDeTexte').length > 30) {
+            var leChampDeTexteEstRemplie = formulaireData.get('monChampDeTexte').length > 30;
+            var expressionReguliere = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var leChampEmailEstRemplie  = expressionReguliere.test(formulaireData.get('email-form'));
+            if (leChampDeTexteEstRemplie && leChampEmailEstRemplie) {
                 document.querySelector('.btn-soumission').removeAttribute('disabled');
             }
         }
