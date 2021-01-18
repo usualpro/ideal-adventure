@@ -31,8 +31,11 @@
         </div>
     </div>
     <script>
-        document.getElementById("monChampDeTexte").onchange = function onChange(form) {
-
+        document.getElementById("leFormulaire").onchange = function onChange(form) {
+            var formulaireData = new FormData(form.currentTarget);
+            if (formulaireData.get('monChampDeTexte').length > 30) {
+                document.querySelector('.btn-soumission').removeAttribute('disabled');
+            }
         }
 
         function listCommentaires() {
