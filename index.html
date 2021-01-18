@@ -32,18 +32,32 @@
         </div>
     </div>
     <script>
-
-        document.getElementById("contenu-form").oninput = function(champDeTexte){
+        /*
+            Se déclenche quand la valeur du champ de texte est modifiée;
+            permet la mise a jour du décompte des charactères dans le champ de texte
+            cette fonction ne renvoie rien
+        */
+        function onTextAreaChange(champDeTexte){
             document.getElementById('compteur').innerHTML = `${champDeTexte.currentTarget.value.length} / 30 charactères`;
         }
 
-        document.getElementById("leFormulaire").oninput = function onChange(form) {
+        /*
+            Se déclenche quand l'une des valeurs d'un champ du formulaire est modifiée
+            permet la réactivation du bouton du soumission si la chaine de charactères à une taille supérieur à 30
+            cette fonction ne renvoie rien
+        */
+        function onFormChange(form) {
             var formulaireData = new FormData(form.currentTarget);
             if (formulaireData.get('monChampDeTexte').length > 30) {
                 document.querySelector('.btn-soumission').removeAttribute('disabled');
             }
         }
 
+        /*
+            Se déclenche lorsque la page est chargée
+            permet le remplissage de la liste de commentaires associé au poste 752
+            cette fonction ne renvoie rien
+        */
         function listCommentaires() {
             document.querySelector("#liste-commentaires").innerHTML = '';
             axios.get('https://effy-simple-api.herokuapp.com/posts/752').then(function (results) {
@@ -54,8 +68,12 @@
                 })
             });
         }
-
-        document.querySelector('.btn-soumission').onclick = function (btn) {
+        /*
+            Se déclenche lors d'un click sur le bouton de soumission
+            permet d'ajouter un commentaire à la liste de commentaires du post avec l'id:752
+            cette fonction ne renvoie rien
+        */
+        function postComment(btn) {
             btn.preventDefault();
             axios.post('https://effy-simple-api.herokuapp.com/comments', {
                 "content": document.querySelector('#contenu-form').value,
@@ -66,7 +84,13 @@
             });
         }
 
+        // Attribution des fonctions au éléments du DOM au travers de divers évenements (oninput & onclick) 
+        document.getElementById("contenu-form").oninput = onTextAreaChange;
+        document.getElementById("leFormulaire").oninput = onFormChange;
+        document.querySelector('.btn-soumission').onclick = postComment;
+        // possibilité de lancer un interval pour rafraichir la liste de commentaires
         // setInterval(listCommentaires, 10000);
+        // Appel de la fonction listCommentaires() pour: ... lister les commentaires ... 😅
         listCommentaires();
     </script>
 </body>
